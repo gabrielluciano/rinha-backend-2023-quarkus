@@ -1,52 +1,38 @@
-# rinha-backend-2023
+# Rinha Backend 2023 Java+Quarkus
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+Inspirado no vídeo do @akitaonrails, resolvi criar minha implementação (atrasada) da [Rinha de Backend](https://github.com/zanfranceschi/rinha-de-backend-2023-q3) utilizando Java com o framework Quarkus.
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+A imagem [gabrielluciano/rinha-2023-api-quarkus-native](https://hub.docker.com/r/gabrielluciano/rinha-2023-api-quarkus-native) foi compilada para um executável nativo utilizando seguindo [este guia](https://quarkus.io/guides/building-native-image)
 
-## Running the application in dev mode
+Esta foi minha primeira vez utilizando o Quarkus então certamente há muitos pontos de melhorias a serem realizados neste código.
 
-You can run your application in dev mode that enables live coding using:
-```shell script
-./mvnw compile quarkus:dev
+## Tecnologias utilizadas
+
+- Java com o framework Quarkus utilizando as libs
+  - RESTEasy Reactive
+  - Hibernate Reactive
+  - Hibernate Validator
+  - Lombok
+- PostgreSQL
+- Nginx
+
+## Getting Started
+
+```shell
+# Clonando o repo
+git clone https://github.com/gabrielluciano/rinha-backend-2023-quarkus
+cd rinha-backend-2023-quarkus
+
+# Iniciando o projeto com o Docker Compose
+docker compose up -d
 ```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+## Resultados
 
-## Packaging and running the application
+Stress test realizado em VM (VMWare) com Lubuntu, 6 cores, 10 GB de RAM e HDD
 
-The application can be packaged using:
-```shell script
-./mvnw package
-```
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+![resultados](assets/results-native.png)
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+## Créditos
 
-If you want to build an _über-jar_, execute the following command:
-```shell script
-./mvnw package -Dquarkus.package.type=uber-jar
-```
-
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using: 
-```shell script
-./mvnw package -Dnative
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/rinha-backend-2023-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
-
-## Related Guides
-
-- Reactive PostgreSQL client ([guide](https://quarkus.io/guides/reactive-sql-clients)): Connect to the PostgreSQL database using the reactive pattern
+Configurações do nginx e postgresql foram baseadas nas implementações do @viniciusfonseca e @zsantana
